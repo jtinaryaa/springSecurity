@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: spring-security-basic
+
+  security:
+    user:
+      name: admin
+      password: admin123
+server:
+  port: 9090

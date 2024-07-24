@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "f0034ba8-0a92-420e-bc87-ffaeee05601a",
+		"name": "spring-security-jwt-body",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3762674",
+		"_collection_link": "https://solar-satellite-510940.postman.co/workspace/TMO~33cef619-f08f-4a44-87a6-973d2c5a7c05/collection/3762674-f0034ba8-0a92-420e-bc87-ffaeee05601a?action=share&source=collection_link&creator=3762674"
+	},
+	"item": [
+		{
+			"name": "JWT_TOKEN",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"jtinarya@gmail.com\",\r\n    \"password\":\"12345@qweAA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9097/jwt-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9097",
+					"path": [
+						"jwt-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Welcome",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwic3ViIjoiSldUX1RPS0VOIiwidXNlcm5hbWUiOiJqdGluYXJ5YUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IkFETUlOIiwiaWF0IjoxNzIxNzU4ODIzLCJleHAiOjE3MjE3NTkxMjN9.Qw6nVJzABk0of5kdLJuwO91G7FFiVKOJrE2VcfEBLVY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9097/welcome",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9097",
+					"path": [
+						"welcome"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registration",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"jtinarya@gmail.com\",\r\n    \"password\" : \"12345@qweAA\",\r\n    \"role\" : \"ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9097/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9097",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

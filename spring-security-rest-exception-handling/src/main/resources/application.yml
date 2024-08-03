@@ -16,6 +16,6 @@ logging:
   level:
     org.springframework.security.web: DEBUG
 server:
-  port: 9096
+  port: 1002
 
 

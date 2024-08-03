@@ -8,7 +8,9 @@ You can follow the Spring Security microservice in the below way :
 5.  spring-security-basic-mysql-custom-table
 6.  spring-security-rest-login-register
 7.  spring-security-rest-password-encoder
-8.  spring-security-rest-exception-handling
-9.  spring-security-authentication-provider
+8.  spring-security-authentication-provider
+9.  spring-security-rest-exception-handling
 10. JWT/spring-security-rest-jwt-header
-11. 
+11. JWT/spring-security-rest-jwt-body
+12. JWT/spring-security-rest-jwt-basic-auth
+

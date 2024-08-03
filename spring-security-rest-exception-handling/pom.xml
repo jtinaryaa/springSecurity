@@ -13,9 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-security-rest-exception-handling</name>
 	<description>This is the example of spring security where we are doing authentication via mysql db.
-	In this Project we are creating our own classes/interface and DB schema to first register a user and then login.
-	The Main Part of this microservice is Password Encoders , here we are using BCryptPassword Encoder.
-	We have also added the exception-handling in that when user put the wrong credentials then we have to give the proper response.
+	In this project we will try to understand that how we can handle the exception in Spring Security.
 	</description>
 	<properties>
 		<java.version>17</java.version>
@@ -70,6 +68,12 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
 		</dependency>
 
 		<!--Added Validator Dependency-->

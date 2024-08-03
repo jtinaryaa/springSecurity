@@ -1,7 +1,7 @@
 package com.spring.security.spring_security_basic.service;
 
+import com.spring.security.spring_security_basic.ApiErrorResponse;
 import com.spring.security.spring_security_basic.repository.EmployeeRepository;
-import com.spring.security.spring_security_basic.entity.ApiResponse;
 import com.spring.security.spring_security_basic.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,10 +51,10 @@ public class EmployeeService implements UserDetailsService {
             employee = employeeRepository.save(usePasswordEncoder(employee));
             return new ResponseEntity<>(employee,HttpStatus.CREATED);
         }
-        ApiResponse response = ApiResponse.builder()
+        ApiErrorResponse response = ApiErrorResponse.builder()
                 .httpStatus(HttpStatus.BAD_REQUEST)
-                .message(employee.getEmail()+" already exists")
-                .errorCode("USER EXISTS !")
+                .errorMessage(employee.getEmail()+" already exists")
+                .httpCode(HttpStatus.BAD_REQUEST.value())
                 .build();
         return new ResponseEntity<>(response,HttpStatus.CREATED);
     }

@@ -1,6 +1,7 @@
 package com.spring.security.spring_security_basic.config;
 
-import com.spring.security.spring_security_basic.exception.BasicAuthenticationExceptionHandling;
+import com.spring.security.spring_security_basic.exceptions.EmployeeAccessDeniedHandler;
+import com.spring.security.spring_security_basic.exceptions.EmployeeBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
@@ -18,7 +19,36 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.sql.DataSource;
 
 /**
-@author Jatin Arora
+ * @author Jatin Arora
+
+ * <p>In this class we are going to learn that how Spring Security handles the eception or how
+ * we can handle the exceptions via giving proper/valid error response</p>
+ *
+ * <p>If a client attempts to access a resource without authentication or proper authorization
+ * , they should be prompted to provide credentials to access the resource. This can be achieved
+ * by either redirecting the client to login page in the user interface or by informing them
+ * by the situation through an API Response</p>
+ *
+ * <p>So first we will have to understand that how Spring Security handles the exception.</p>
+ * <p>So Spring Security have one filter {@link org.springframework.security.web.access.ExceptionTranslationFilter}
+ * which handles the Exception by using {@link org.springframework.security.web.AuthenticationEntryPoint}
+ *  and {@link org.springframework.security.web.access.AccessDeniedHandler}</p>
+ *
+ *  <p>So here we have two types of excpetions in Spring Security we have two types of exception
+ *  one is 401 AuthenticationException and this exception is the root class for BadCredentialsException
+ *  UsernameNotFoundException and many more. This type of Excpetion comes when user/client is not able
+ *  to Authenitcate with proper credentials.</p>
+ *
+ *  <p>Second type of exception is 403 forbidden error and that is part of AccessDeniedException
+ *  this type of exception comes when user is able to authneitcate but authorization fails due to
+ *  not having valid access privilages or other reasons. All this kind of exceptions we always
+ *  get 403 frobidden error. </p>
+ *
+ *  <p>Which type of Exception will be invokes that is the responsiblity of ExceptionTranslationFilter.</p>
+ *  <p>You Can refer {@link org.springframework.security.web.access.ExceptionTranslationFilter}
+ *  Class and method name is {@code handleSpringSecurityException()}</p>
+
+
 */
 @Configuration
 public class EmployeeSecurityConfig {
@@ -35,7 +65,16 @@ public class EmployeeSecurityConfig {
                 .requestMatchers("/welcome").authenticated()
                 .requestMatchers("/register","/hello").permitAll()
                 .and().formLogin()
-                .and().httpBasic(b -> b.authenticationEntryPoint(new BasicAuthenticationExceptionHandling()));
+                .and().httpBasic(hbc -> hbc.authenticationEntryPoint(new EmployeeBasicAuthenticationEntryPoint()))
+                /*
+                 * Below is also the another way of defining authenticationEntryPoint but the difference is that below
+                 * configuration of defining AuthenticationEntryPoint is on Global Level.
+                 * Global Level means in any request or anywhere inside the code if you are getting
+                 * AuthenticationException or its child exception then the Below entry point will call.
+                 * Note: The above entry point is applicable only for Basic Authentication flow.
+                 */
+                //.exceptionHandling(ehc -> ehc.authenticationEntryPoint(new EmployeeBasicAuthenticationEntryPoint()));
+                .exceptionHandling(ehc -> ehc.accessDeniedHandler(new EmployeeAccessDeniedHandler()));
         return http.build();
     }
 
